@@ -14,12 +14,17 @@ struct ReportDetailView: View {
     //MARK: Compuuted property
     var body: some View {
         ScrollView {
-            VStack(spacing: 10) {
+            VStack(alignment: .leading, spacing: 10) {
                 Text(thisReport.name)
-                
-                Text("\(thisReport.grade)")
+                    .bold()
+                    .font(.title)
+                HStack {
+                    Text("Grade:")
+                    Text("\(thisReport.grade)")
+                }
                 
                 Text(thisReport.comment)
+                Spacer()
             }
         }
     }
@@ -28,6 +33,9 @@ struct ReportDetailView: View {
 struct ReportDetailView_Previews: PreviewProvider {
     static var previews: some View {
         // For the "thisReport" parameter, we supply, as an argument, the first item from the listOfReports
-        ReportDetailView(thisReport: listOfReports.first!)
+        NavigationView {
+            ReportDetailView(thisReport: listOfReports.first!)
+                .preferredColorScheme(.dark)
+        }
     }
 }
